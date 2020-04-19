@@ -1,0 +1,3 @@
+[submodule "todoapp-openapi"]
+	path = todoapp-openapi
+	url = git@github.com:taroshun32/todoapp-openapi.git
