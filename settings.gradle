@@ -1,0 +1,3 @@
+rootProject.name = "todo"
+include ':todoapp-openapi'
+project(':todoapp-openapi').projectDir = new File('./todoapp-openapi/kotlin-spring')
