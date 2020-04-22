@@ -1,0 +1,33 @@
+spring:
+  datasource:
+    url: ${datasource.url:jdbc:mysql://localhost:3306}/todo?useSSL=false&zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=utf8&nullNamePatternMatchesAll=true
+    username: ${datasource.username:root}
+    password: ${datasource.password:password}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    initialization-mode: ${datasource.initialization-mode:always}
+    type: com.zaxxer.hikari.HikariDataSource
+
+  flyway:
+    enabled: true
+    locations: classpath:/db/createTable,classpath:/db/insertData
+
+  # 文字化け対策
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+
+server:
+  tomcat:
+    # スレッドサイズ
+    max-threads: 200
+
+#==================================================================
+# doma
+#==================================================================
+doma:
+  dialect: mysql
+  query-timeout: 10
+  exception-sql-log-type: formatted
+  sql-file-repository: no_cache
