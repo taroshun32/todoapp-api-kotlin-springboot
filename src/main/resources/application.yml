@@ -4,7 +4,6 @@ spring:
     username: ${datasource.username:root}
     password: ${datasource.password:password}
     driver-class-name: com.mysql.cj.jdbc.Driver
-    initialization-mode: ${datasource.initialization-mode:always}
     type: com.zaxxer.hikari.HikariDataSource
 
   flyway:
