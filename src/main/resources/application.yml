@@ -1,3 +1,6 @@
+environments:
+  profile: local
+
 spring:
   datasource:
     url: ${datasource.url:jdbc:mysql://localhost:3306}/todo?useSSL=false&zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=utf8&nullNamePatternMatchesAll=true
@@ -22,9 +25,6 @@ server:
     # スレッドサイズ
     max-threads: 200
 
-#==================================================================
-# doma
-#==================================================================
 doma:
   dialect: mysql
   query-timeout: 10
