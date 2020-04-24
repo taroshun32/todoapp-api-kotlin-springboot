@@ -30,3 +30,9 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### Mac ###
+.DS_Store
+
+### DB ###
+/.docker/db/mysql_data

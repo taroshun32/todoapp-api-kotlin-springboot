@@ -1,0 +1,35 @@
+version: '3.6'
+services:
+  todoapp-api:
+    image: adoptopenjdk/openjdk11:alpine
+    container_name: todoapp-api
+    command: sh scripts/bootserver.sh
+    working_dir: /var/app/
+    tty: true
+    ports:
+      - "8080:8080"
+      - "5005:5005"
+    volumes:
+      - ".:/var/app:cached"
+      - "~/.gradle:/root/.gradle"
+      - "$HOME/.aws/credentials:/root/.aws/credentials:ro"
+    depends_on:
+      - mysql
+    environment:
+      TZ: Asia/Tokyo
+      LANG: "ja_JP.UTF-8"
+      LANGUAGE: "ja_JP.UTF-8"
+      LC_ALL: "ja_JP.UTF-8"
+      DATASOURCE_URL: "jdbc:mysql://mysql:3306"
+  mysql:
+    image: mysql:5.7
+    container_name: mysql
+    ports:
+      - "3306:3306"
+    volumes:
+      - "./.docker/db/mysql_data:/var/lib/mysql"
+      - "./.docker/db/config/my.cnf:/etc/mysql/my.cnf"
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: todo
+      TZ: "Asia/Tokyo"
