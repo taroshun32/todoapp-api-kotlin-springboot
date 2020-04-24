@@ -115,6 +115,11 @@ test {
   useJUnitPlatform()
 }
 
+/* remote debug */
+bootRun {
+  jvmArgs = ["-agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=*:5005"]
+}
+
 /* flyway settings */
 flyway {
   url = datasource.url
