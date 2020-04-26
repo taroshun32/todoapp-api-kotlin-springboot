@@ -1,3 +1,12 @@
+#==================================================================
+# 環境変数
+#==================================================================
+environments:
+  profile: local
+
+#==================================================================
+# Spring設定
+#==================================================================
 spring:
   datasource:
     url: ${datasource.url:jdbc:mysql://localhost:3306}/todo?useSSL=false&zeroDateTimeBehavior=convertToNull&useUnicode=true&characterEncoding=utf8&nullNamePatternMatchesAll=true
