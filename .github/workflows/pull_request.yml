@@ -39,3 +39,21 @@ jobs:
             ${{ runner.os }}-gradle-
       - name: test
         run: ./gradlew test
+
+  detekt:
+    timeout-minutes: 5
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@master
+
+      - name: Cache gradle
+        uses: actions/cache@v1
+        with:
+          path: ~/.gradle/caches
+          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
+          restore-keys: |
+            ${{ runner.os }}-gradle-
+
+      - name: lint
+        run: ./gradlew detekt
