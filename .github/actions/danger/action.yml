@@ -1,0 +1,8 @@
+name: "Danger"
+description: "Run Danger"
+branding:
+  icon: "alert-triangle"
+  color: "yellow"
+runs:
+  using: "docker"
+  image: "Dockerfile"
