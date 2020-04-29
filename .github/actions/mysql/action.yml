@@ -1,0 +1,7 @@
+name: set up mysql
+branding:
+  icon: "database"
+  color: "green"
+runs:
+  using: "docker"
+  image: "Dockerfile"
