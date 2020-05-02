@@ -6,6 +6,7 @@ buildscript {
     domaVersion = "2.19.3"
     mysqlJdbcVersion = "8.0.14"
     flywayVersion = "5.2.3"
+    detektVersion = "1.3.0"
   }
   repositories {
     mavenCentral()
@@ -20,6 +21,7 @@ buildscript {
 
 plugins {
   id "org.flywaydb.flyway" version "5.2.3"
+  id "io.gitlab.arturbosch.detekt" version "1.3.0"
 }
 
 apply plugin: "kotlin"
@@ -66,6 +68,9 @@ compileTestKotlin {
 dependencies {
   implementation project(":todoapp-openapi")
 
+  /* Detekt - Static Code Analysis */
+  detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:${detektVersion}")
+
   /* Doma2 */
   implementation "org.seasar.doma.boot:doma-spring-boot-starter:$springBootDomaVersion"
   implementation "org.seasar.doma:doma:${domaVersion}"
@@ -108,6 +113,19 @@ allprojects {
 project(":todoapp-openapi") {
   bootJar.enabled = false
   jar.enabled = true
+}
+
+/* Detekt Task */
+detekt {
+  input = files("src/main/kotlin")
+  config = files("detekt-config.yml")
+  autoCorrect = true
+  parallel = true
+}
+
+tasks.withType(io.gitlab.arturbosch.detekt.Detekt) {
+  exclude(".*/resources/.*")
+  exclude(".*/build/.*")
 }
 
 /* enable junit 5 */
