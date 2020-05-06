@@ -8,6 +8,8 @@ object RequestTrackingId {
 
   fun get(): String = MDC.get(KEY) ?: "can't get request id"
 
+  fun getNullable(): String? = MDC.get(KEY)
+
   fun put() {
     MDC.put(KEY, UUID.randomUUID().toString())
   }

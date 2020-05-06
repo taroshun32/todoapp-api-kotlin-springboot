@@ -1,5 +1,6 @@
 package com.example.todo.presentation.controller
 
+import com.example.todo.domain.model.exception.BadRequestException
 import org.openapitools.spring.models.Token
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.GetMapping
@@ -15,7 +16,7 @@ class SampleApiController() {
 
   @GetMapping("/error")
   fun error(): HttpStatus {
-    throw IllegalStateException("Sample Exception")
+    throw BadRequestException("Sample Exception")
   }
 
   @GetMapping("/model")
