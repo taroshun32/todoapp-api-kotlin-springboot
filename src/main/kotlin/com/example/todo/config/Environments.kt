@@ -1,5 +1,6 @@
 package com.example.todo.config
 
+import com.example.todo.domain.model.exception.IllegalConfigException
 import org.springframework.boot.context.properties.ConfigurationProperties
 import org.springframework.boot.context.properties.ConstructorBinding
 
@@ -32,7 +33,7 @@ data class Environments(
       PROFILE_STG -> Profile.STG
       PROFILE_DEV -> Profile.DEV
       PROFILE_LOCAL -> Profile.LOCAL
-      else -> Profile.LOCAL // TODO 例外作成時に対応
+      else -> throw IllegalConfigException("想定外のprofile変数が設定されています $profile")
     }
   }
 

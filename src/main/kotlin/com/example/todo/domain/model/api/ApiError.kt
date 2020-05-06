@@ -1,11 +1,10 @@
-package com.example.todo.domain.model
+package com.example.todo.domain.model.api
 
 import com.example.todo.domain.model.exception.BaseException
 import org.openapitools.spring.models.Error
 import org.openapitools.spring.models.ValidationInfo
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
-import java.time.OffsetDateTime
 import javax.servlet.http.HttpServletRequest
 
 /**

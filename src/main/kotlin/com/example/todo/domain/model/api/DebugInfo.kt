@@ -1,4 +1,4 @@
-package com.example.todo.domain.model
+package com.example.todo.domain.model.api
 
 import com.example.todo.domain.model.exception.BaseException
 import com.example.todo.util.PathParamRemover
