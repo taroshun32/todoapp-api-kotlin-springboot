@@ -38,4 +38,7 @@ jobs:
         run: sudo chmod -R 777 $PWD/schema
 
       - name: SchemaSpy
-        run: docker run -v "$PWD/schema:/output" --net="host" schemaspy/schemaspy:snapshot -t mysql -host localhost:3306 -db todo -u root -p password -connprops useSSL\\=false -s todo
+        run: |
+          sh ./.github/actions/schemaspy/entrypoint.sh
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
