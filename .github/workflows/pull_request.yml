@@ -1,5 +1,5 @@
 on: pull_request
-name: test
+name: pull request
 jobs:
   test:
     timeout-minutes: 5
@@ -19,6 +19,7 @@ jobs:
         run: |
           git submodule sync
           git submodule update --init --force
+
       - name: shutdown ubuntu MySql
         run: sudo service mysql stop
 
@@ -37,6 +38,7 @@ jobs:
           key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle') }}
           restore-keys: |
             ${{ runner.os }}-gradle-
+
       - name: test
         run: ./gradlew test
 

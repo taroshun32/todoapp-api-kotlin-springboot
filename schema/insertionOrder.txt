@@ -1,0 +1,3 @@
+users
+tokens
+flyway_schema_history
