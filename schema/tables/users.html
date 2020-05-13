@@ -125,6 +125,10 @@
                                     <td>
                                         <table border='0' cellspacing='0' cellpadding='0'>
                                             <tr>
+                                                <td title="tasks.user_id references users.id via fk_tasks_user_id"><a href='tasks.html'>tasks</a><span class='relatedKey'>.user_id</span></td>
+                                                <td class="constraint detail">fk_tasks_user_id<span title='Cascade on delete:&#10;Deletion of parent deletes child'>C</span></td>
+                                            </tr>
+                                            <tr>
                                                 <td title="tokens.user_id references users.id via fk_tokens_user_id"><a href='tokens.html'>tokens</a><span class='relatedKey'>.user_id</span></td>
                                                 <td class="constraint detail">fk_tokens_user_id<span title='Cascade on delete:&#10;Deletion of parent deletes child'>C</span></td>
                                             </tr>
@@ -290,8 +294,9 @@
                                 <div class="tab-content no-padding">
                                     <div class="chart tab-pane active" id="oneDegreeImg-chart" style="position: relative; overflow-x:auto;">
                                         <map id="oneDegreeRelationshipsDiagram" name="oneDegreeRelationshipsDiagram">
-<area shape="rect" id="node1" href="tokens.html" target="_top" title="tokens" alt="" coords="336,5,529,211">
-<area shape="rect" id="node2" href="users.html" target="_top" title="users" alt="" coords="5,32,292,307">
+<area shape="rect" id="node1" href="tasks.html" target="_top" title="tasks" alt="" coords="363,5,502,152">
+<area shape="rect" id="node2" href="users.html" target="_top" title="users" alt="" coords="5,115,292,389">
+<area shape="rect" id="node3" href="tokens.html" target="_top" title="tokens" alt="" coords="336,169,529,375">
 </map>
                                         <a name='diagram'><img id="oneDegreeImg" src="../diagrams/tables/users.1degree.png" usemap="#oneDegreeRelationshipsDiagram" class="diagram" border="0" align="left"></a>
                                     </div>

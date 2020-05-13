@@ -1,3 +1,4 @@
 flyway_schema_history
 tokens
+tasks
 users

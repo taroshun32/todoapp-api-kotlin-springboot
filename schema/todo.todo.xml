@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<database name="todo" schema="todo" type="MySQL - 5.7.28">
+<database name="todo" schema="todo" type="MySQL - 5.7.30">
    <tables>
       <table catalog="todo" name="flyway_schema_history" numRows="1" remarks="" type="TABLE">
          <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="installed_rank" nullable="false" remarks="" size="10" type="INT" typeCode="4"/>
@@ -18,6 +18,25 @@
          </index>
          <index name="flyway_schema_history_s_idx" unique="false">
             <column ascending="true" name="success"/>
+         </index>
+      </table>
+      <table catalog="todo" name="tasks" numRows="0" remarks="ユーザ認証情報" type="TABLE">
+         <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="false" remarks="タスクID" size="26" type="CHAR" typeCode="1"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="user_id" nullable="false" remarks="ユーザ識別ID" size="26" type="CHAR" typeCode="1">
+            <parent catalog="todo" column="id" foreignKey="fk_tasks_user_id" implied="false" onDeleteCascade="true" table="users"/>
+         </column>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="2" name="name" nullable="false" remarks="タスク名" size="36" type="CHAR" typeCode="1"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="3" name="expires_in" nullable="false" remarks="タスク期限" size="10" type="DATE" typeCode="91"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="4" name="is_done" nullable="false" remarks="完了フラグ" size="1" type="BIT" typeCode="-7"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="5" name="created_at" nullable="false" remarks="登録日時" size="26" type="DATETIME" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="6" name="updated_at" nullable="false" remarks="更新日時" size="26" type="DATETIME" typeCode="93"/>
+         <column autoUpdated="false" defaultValue="null" digits="0" id="7" name="version" nullable="false" remarks="バージョン情報" size="20" type="BIGINT UNSIGNED" typeCode="-5"/>
+         <primaryKey column="id" sequenceNumberInPK="1"/>
+         <index name="PRIMARY" unique="true">
+            <column ascending="true" name="id"/>
+         </index>
+         <index name="fk_tasks_user_id" unique="false">
+            <column ascending="true" name="user_id"/>
          </index>
       </table>
       <table catalog="todo" name="tokens" numRows="0" remarks="ユーザ認証情報" type="TABLE">
@@ -48,6 +67,7 @@
       </table>
       <table catalog="todo" name="users" numRows="0" remarks="ユーザ" type="TABLE">
          <column autoUpdated="false" defaultValue="null" digits="0" id="0" name="id" nullable="false" remarks="ユーザ識別ID" size="26" type="CHAR" typeCode="1">
+            <child catalog="todo" column="user_id" foreignKey="fk_tasks_user_id" implied="false" onDeleteCascade="true" table="tasks"/>
             <child catalog="todo" column="user_id" foreignKey="fk_tokens_user_id" implied="false" onDeleteCascade="true" table="tokens"/>
          </column>
          <column autoUpdated="false" defaultValue="null" digits="0" id="1" name="name" nullable="false" remarks="ユーザ名" size="24" type="VARCHAR" typeCode="12"/>
