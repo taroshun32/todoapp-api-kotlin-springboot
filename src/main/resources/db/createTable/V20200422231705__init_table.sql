@@ -39,3 +39,24 @@ CREATE TABLE tokens
 )
     COMMENT = 'ユーザ認証情報'
     /*! engine = InnoDb */;
+
+-- タスク情報
+CREATE TABLE tasks
+(
+    id                 CHAR(26)        NOT NULL COMMENT 'タスクID',
+    user_id            CHAR(26)        NOT NULL COMMENT 'ユーザ識別ID',
+    name               CHAR(36)        NOT NULL COMMENT 'タスク名',
+    expires_in         DATE            NOT NULL COMMENT 'タスク期限',
+    is_done            BOOL            NOT NULL COMMENT '完了フラグ',
+    created_at         DATETIME        NOT NULL COMMENT '登録日時',
+    updated_at         DATETIME        NOT NULL COMMENT '更新日時',
+    version            BIGINT UNSIGNED NOT NULL COMMENT 'バージョン情報',
+    PRIMARY KEY (id),
+    CONSTRAINT fk_tasks_user_id
+        FOREIGN KEY (user_id)
+            REFERENCES users (id)
+            ON DELETE CASCADE
+            ON UPDATE RESTRICT
+)
+    COMMENT = 'ユーザ認証情報'
+    /*! engine = InnoDb */;
