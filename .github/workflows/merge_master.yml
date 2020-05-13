@@ -4,7 +4,7 @@ on:
       - master
     paths:
       - 'src/main/resources/db/createTable/**'
-name: schema
+name: merge master
 jobs:
   schemaspy:
     timeout-minutes: 5

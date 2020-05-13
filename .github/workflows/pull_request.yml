@@ -1,5 +1,5 @@
 on: pull_request
-name: test
+name: pull request
 jobs:
   test:
     timeout-minutes: 5
