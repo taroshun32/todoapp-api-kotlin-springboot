@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
 @RestController
-@RequestMapping("/api/sample")
-class SampleApiController() {
+@RequestMapping("/sample")
+class SampleController() {
 
   @GetMapping
   fun ok(): HttpStatus = HttpStatus.OK
