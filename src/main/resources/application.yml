@@ -19,6 +19,12 @@ spring:
     enabled: true
     locations: classpath:/db/createTable,classpath:/db/insertData
 
+  # 静的ファイルへのマッピングをオフにして、404の場合はExceptionHandlerに流す
+  mvc:
+    throw-exception-if-no-handler-found: true
+  resources:
+    add-mappings: false
+
   # 文字化け対策
   http:
     encoding:
