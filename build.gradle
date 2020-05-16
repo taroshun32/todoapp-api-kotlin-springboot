@@ -7,6 +7,12 @@ buildscript {
     mysqlJdbcVersion = "8.0.14"
     flywayVersion = "5.2.3"
     detektVersion = "1.3.0"
+    reactorTestVersion = "3.3.0.RELEASE"
+    assertJVersion = "3.12.2"
+    dbunitVersion = "2.6.0"
+    dbunitSpringVersion = "1.3.0"
+    mockkVersion = "1.9"
+    moshiVersion = "1.8.0"
   }
   repositories {
     mavenCentral()
@@ -81,6 +87,25 @@ dependencies {
 
   /* mysql */
   runtimeOnly("mysql:mysql-connector-java")
+
+  /* ULID */
+  implementation("de.huxhorn.sulky:de.huxhorn.sulky.ulid:8.2.0")
+
+  /* Semantic Version */
+  implementation("net.swiftzer.semver:semver:1.1.1")
+
+  /* test */
+  testImplementation("org.springframework.boot:spring-boot-starter-test") {
+    exclude group: "org.junit.vintage", module: "junit-vintage-engine"
+  }
+  testImplementation("io.projectreactor:reactor-test:${reactorTestVersion}")
+  testImplementation("org.assertj:assertj-core:${assertJVersion}")
+  testImplementation("org.dbunit:dbunit:${dbunitVersion}")
+  testCompile("com.github.springtestdbunit:spring-test-dbunit:${dbunitSpringVersion}")
+
+  /* mock */
+  testImplementation("io.mockk:mockk:${mockkVersion}")
+  testImplementation("io.mockk:mockk-common:${mockkVersion}")
 }
 
 allprojects {
@@ -106,9 +131,7 @@ allprojects {
     implementation("org.springframework.boot:spring-boot-starter-web")
     runtimeOnly("org.springframework.boot:spring-boot-devtools")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-
-    /* test */
-    testImplementation("org.springframework.boot:spring-boot-starter-test")
+    implementation("org.springframework.boot:spring-boot-starter-aop")
   }
 }
 
