@@ -5,7 +5,7 @@ import org.seasar.doma.Domain
 /**
  * スマホOS種別
  */
-@Domain(valueType = String::class, accessorMethod = "name", factoryMethod = "valueOf")
+@Domain(valueType = String::class)
 enum class OsType {
   IOS,
   ANDROID
