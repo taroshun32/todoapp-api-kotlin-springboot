@@ -43,7 +43,7 @@ data class ApiError(
   }
 
   override fun toString(): String =
-    """$status cause=${debugInfo.exceptionName} Request-Line=${debugInfo.requestLine} debugMessage=${debugInfo.debugMessage}
+    """$status OS=${debugInfo.osType} cause=${debugInfo.exceptionName} Request-Line=${debugInfo.requestLine} debugMessage=${debugInfo.debugMessage}
 ${if (validationInfos.isNullOrEmpty()) "" else "validationInfos=$validationInfos"}
 $debugInfo
 """

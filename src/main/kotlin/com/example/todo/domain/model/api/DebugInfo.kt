@@ -1,5 +1,7 @@
 package com.example.todo.domain.model.api
 
+import com.example.todo.domain.model.api.header.MobileApp
+import com.example.todo.domain.model.api.header.MobileOs
 import com.example.todo.domain.model.exception.BaseException
 import com.example.todo.util.PathParamRemover
 import org.springframework.http.HttpStatus
@@ -13,6 +15,8 @@ data class DebugInfo(
   val path: String,
   val status: HttpStatus,
   val exceptionName: String? = null,
+  val osType: String? = null,
+  val appVersion: String? = null,
   val parameters: String? = null,
   val debugMessage: String? = null,
   val errorObject: Any? = null
@@ -32,6 +36,8 @@ data class DebugInfo(
         path = PathParamRemover.remove(request),
         status = exception.status,
         exceptionName = exception::class.simpleName,
+        osType = request.getHeader(MobileOs.HEADER_KEY)?.toString(),
+        appVersion = request.getHeader(MobileApp.HEADER_KEY)?.toString(),
         parameters = request.queryString,
         debugMessage = exception.message,
         errorObject = exception.errorObject
@@ -47,6 +53,8 @@ data class DebugInfo(
     return """DebugInfo
   Request-Line   = $requestLine$debugParameters
   Status-Line    = $status $exceptionName
+  osType         = $osType
+  appType        = $appVersion
   debugMessage   = $debugMessage$debugErrorObject"""
   }
 }
