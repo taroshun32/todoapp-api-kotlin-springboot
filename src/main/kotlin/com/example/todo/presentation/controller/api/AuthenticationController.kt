@@ -3,6 +3,7 @@ package com.example.todo.presentation.controller.api
 import com.example.todo.application.service.AuthenticationService
 import com.example.todo.domain.model.api.header.TodoAppNoAuthHeaders
 import org.openapitools.spring.models.AuthPostParameter
+import org.openapitools.spring.models.Token
 import org.springframework.http.HttpStatus
 import org.springframework.validation.annotation.Validated
 import org.springframework.web.bind.annotation.RequestBody
@@ -29,7 +30,7 @@ class AuthenticationController(
     @RequestHeader(value = "X-OS-TYPE", required = true) xOsType: String,
     @RequestHeader(value = "X-APP-VERSION", required = true) xAppVersion: String,
     @Valid @RequestBody authPostParameter: AuthPostParameter
-  ): HttpStatus {
+  ): Token {
     val header = TodoAppNoAuthHeaders.of(xOsType, xAppVersion)
     return authService.signup(header, authPostParameter)
   }
