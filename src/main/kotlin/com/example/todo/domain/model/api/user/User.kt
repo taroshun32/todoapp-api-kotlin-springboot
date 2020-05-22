@@ -15,12 +15,12 @@ class User(
   companion object {
     fun of(
       header: TodoAppNoAuthHeaders,
-      loginParam: AuthPostParameter
+      authParam: AuthPostParameter
     ): User {
       return User(
         id = UserId.create(),
-        name = loginParam.userName,
-        password = loginParam.password,
+        name = authParam.userName,
+        password = authParam.password,
         osType = header.os.osType
       )
     }

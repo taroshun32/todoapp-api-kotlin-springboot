@@ -38,6 +38,4 @@ data class UserRecord(
   @Version
   @Column(name = "version")
   override val version: Long
-) : Common() {
-
-}
+) : Common()
