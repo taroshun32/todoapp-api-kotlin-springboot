@@ -1,6 +1,7 @@
 package com.example.todo.infrastructure.record
 
 import com.example.todo.domain.model.api.user.OsType
+import com.example.todo.domain.model.api.user.User
 import com.example.todo.domain.model.api.user.UserId
 import org.seasar.doma.Column
 import org.seasar.doma.Entity
@@ -38,4 +39,13 @@ data class UserRecord(
   @Version
   @Column(name = "version")
   override val version: Long
-) : Common()
+) : Common() {
+
+  val toDomain: User
+    get() = User(
+      id = id,
+      name = name,
+      password = password,
+      osType = osType
+    )
+}
