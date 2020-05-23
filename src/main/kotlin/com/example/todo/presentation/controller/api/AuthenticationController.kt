@@ -23,6 +23,7 @@ class AuthenticationController(
   @RequestMapping(
     value = ["/api/signup"],
     produces = ["application/json"],
+    consumes = ["application/json"],
     method = [RequestMethod.POST]
   )
   @ResponseStatus(HttpStatus.OK)
@@ -33,5 +34,21 @@ class AuthenticationController(
   ): Token {
     val header = TodoAppNoAuthHeaders.of(xOsType, xAppVersion)
     return authService.signup(header, authPostParameter)
+  }
+
+  @RequestMapping(
+    value = ["/api/login"],
+    produces = ["application/json"],
+    consumes = ["application/json"],
+    method = [RequestMethod.POST]
+  )
+  @ResponseStatus(HttpStatus.OK)
+  fun login(
+    @RequestHeader(value = "X-OS-TYPE", required = true) xOsType: String,
+    @RequestHeader(value = "X-APP-VERSION", required = true) xAppVersion: String,
+    @Valid @RequestBody authPostParameter: AuthPostParameter
+  ): Token {
+    val header = TodoAppNoAuthHeaders.of(xOsType, xAppVersion)
+    return authService.login(header, authPostParameter)
   }
 }

@@ -10,7 +10,7 @@ class UserRepositoryImpl(
   private val dao: UserDao
 ) : UserRepository {
 
-  override fun store(
-    userRecord: UserRecord
-  ): UserRecord = dao.insert(userRecord).entity
+  override fun findByName(name: String): UserRecord? = dao.selectByName(name)
+
+  override fun store(userRecord: UserRecord): UserRecord = dao.insert(userRecord).entity
 }
