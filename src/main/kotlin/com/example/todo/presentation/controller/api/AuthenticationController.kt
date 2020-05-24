@@ -1,6 +1,7 @@
 package com.example.todo.presentation.controller.api
 
 import com.example.todo.application.service.AuthenticationService
+import com.example.todo.domain.model.api.header.TodoAppHeaders
 import com.example.todo.domain.model.api.header.TodoAppNoAuthHeaders
 import org.openapitools.spring.models.AuthPostParameter
 import org.openapitools.spring.models.Token
@@ -67,5 +68,21 @@ class AuthenticationController(
   ): Token {
     TodoAppNoAuthHeaders.of(xOsType, xAppVersion)
     return service.refresh(tokenRefreshPostParameter)
+  }
+
+  @RequestMapping(
+    value = ["/api/logout"],
+    produces = ["application/json"],
+    consumes = ["application/json"],
+    method = [RequestMethod.POST]
+  )
+  @ResponseStatus(HttpStatus.OK)
+  fun logout(
+    @RequestHeader(value = "Authorization", required = true) authorization: String,
+    @RequestHeader(value = "X-OS-TYPE", required = true) xOsType: String,
+    @RequestHeader(value = "X-APP-VERSION", required = true) xAppVersion: String
+  ): HttpStatus {
+    val header = TodoAppHeaders.of(xOsType, xAppVersion, authorization)
+    return service.logout(header)
   }
 }
