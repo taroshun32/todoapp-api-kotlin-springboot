@@ -1,5 +1,7 @@
 package com.example.todo.infrastructure.dao
 
+import com.example.todo.domain.model.api.token.AccessToken
+import com.example.todo.domain.model.api.token.RefreshToken
 import com.example.todo.domain.model.api.user.UserId
 import com.example.todo.infrastructure.record.TokenRecord
 import org.seasar.doma.Dao
@@ -15,6 +17,12 @@ interface TokenDao {
 
   @Select
   fun selectByUserId(userId: UserId): TokenRecord?
+
+  @Select
+  fun selectByAccessToken(accessToken: AccessToken): TokenRecord?
+
+  @Select
+  fun selectByRefreshToken(refreshToken: RefreshToken): TokenRecord?
 
   @Insert
   fun store(user: TokenRecord): Result<TokenRecord>
