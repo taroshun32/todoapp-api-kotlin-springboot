@@ -2,6 +2,7 @@ package com.example.todo.application.service
 
 import com.example.todo.application.repository.TokenRepository
 import com.example.todo.application.repository.UserRepository
+import com.example.todo.domain.model.api.header.TodoAppHeaders
 import com.example.todo.domain.model.api.header.TodoAppNoAuthHeaders
 import com.example.todo.domain.model.api.token.Token
 import com.example.todo.domain.model.api.user.User
@@ -11,6 +12,7 @@ import com.example.todo.domain.model.exception.NotFoundException
 import com.example.todo.domain.service.TokenDomainService
 import org.openapitools.spring.models.AuthPostParameter
 import org.openapitools.spring.models.TokenRefreshPostParameter
+import org.springframework.http.HttpStatus
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
 
@@ -56,5 +58,11 @@ class AuthenticationService(
     val tokenRecord = tokenDomainService.validateRefreshToken(tokenRefreshParam)
     val refreshedToken = tokenRepository.update(tokenRecord.update())
     return refreshedToken.toDomain.dto
+  }
+
+  @Transactional(rollbackFor = [Exception::class])
+  fun logout(header: TodoAppHeaders): HttpStatus {
+    tokenDomainService.logout(header)
+    return HttpStatus.OK
   }
 }
