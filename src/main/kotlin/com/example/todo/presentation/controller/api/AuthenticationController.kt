@@ -51,7 +51,7 @@ class AuthenticationController(
     @Valid @RequestBody authPostParameter: AuthPostParameter
   ): Token {
     val header = TodoAppNoAuthHeaders.of(xOsType, xAppVersion)
-    return service.login(header, authPostParameter)
+    return service.login(authPostParameter)
   }
 
   @RequestMapping(
