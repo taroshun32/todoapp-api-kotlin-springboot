@@ -2,7 +2,6 @@
 kotlin×springboot タスク管理アプリ用API
 
 ## プロジェクト構成
-
 <pre>
 root
   ├ .docker : Dockerのローカル開発用の設定
@@ -23,6 +22,33 @@ root
   ├ settings.gradle :Gradleプロジェクト設定
   └ README.md
 </pre>
+
+## パッケージ構成
+- 参考リポジトリ https://github.com/system-sekkei/isolating-the-domain
+```
+main
+  kotlin
+    com.example.todo
+      application                     … アプリケーション層
+        repository                      … リポジトリインターフェイス
+        service                         … @Service
+      config                          … コンフィギュレーション(@Configuration)
+      domain                          … ドメイン層
+        model                           … ドメインモデル
+        service                         … ドメインサービス
+      infrastructure                  … インフラストラクチャ層
+        dao                             … @Dao
+        record                          … @Entity
+        repository                      … リポジトリインターフェイスの実装(@Repository)
+      middleware                      … ミドルウェア
+      presentation                    … プレゼンテーション層
+        controller                      … @Controller
+          api                             … API(/api)
+      util                            … ユーティリティ
+  resources
+    db                                … flyway管理(マイグレーション)
+    - application.yml                 … アプリケーション設定ファイル
+```
 
 ## 開発環境
 | 項目 | バージョン | 用途 |
