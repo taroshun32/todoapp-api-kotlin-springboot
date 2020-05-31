@@ -2,7 +2,7 @@
 kotlin×springboot タスク管理アプリ用API
 
 ## プロジェクトについて
-このプロジェクトでは `GithubActions` を `CI` のメインツールとして使用しています。[ [各Actionについて ](https://github.com/taroshun32/todoapp-api-kotlin-springboot/wiki/GithubActionsについて)]  
+このプロジェクトでは `GithubActions` を `CI` のメインツールとして使用しています。[ [各Actionについて](https://github.com/taroshun32/todoapp-api-kotlin-springboot/wiki/GithubActionsについて) ]  
 API定義には `OpenAPI(Swagger)` を用いています。  
 `Controller` と `Model` を自動生成したものをサブモジュールとして取り込み、Gradleでサブプロジェクト化しています。
 
@@ -68,7 +68,7 @@ main
 
 ## セットアップ
 
-[[ローカル環境構築]](https://github.com/taroshun32/todoapp-api-kotlin-springboot/wiki/ローカル環境構築)を参照
+[ [ローカル環境構築](https://github.com/taroshun32/todoapp-api-kotlin-springboot/wiki/ローカル環境構築) ]
 
 ## 起動方法
 
