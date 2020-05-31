@@ -1,6 +1,22 @@
 # todoapp-api-kotlin-springboot
 kotlin×springboot タスク管理アプリ用API
 
+## プロジェクトについて
+このプロジェクトでは `GithubActions` を `CI` のメインツールとして使用しています。[ [各Actionについて ](https://github.com/taroshun32/todoapp-api-kotlin-springboot/wiki/GithubActionsについて)]  
+API定義には `OpenAPI(Swagger)` を用いています。  
+`Controller` と `Model` を自動生成したものをサブモジュールとして取り込み、Gradleでサブプロジェクト設定を行なっています。
+
+## 開発環境
+| 項目 | バージョン | 用途 |
+|:-----------:|:-----------:|:-----------:|
+| Kotlin | 1.3 | 言語 |
+| AdoptOpenJDK | 11 | JDK |
+| Gradle | 6.3 | ビルド |
+| Sprint Boot | 2.2.6 | フレームワーク |
+| MySQL | 5.7 | データベース |
+| Doma | 2.19.3 | ORマッパー |
+| Flyway | 5.2.3 | マイグレーション |
+
 ## プロジェクト構成
 <pre>
 root
@@ -50,10 +66,18 @@ main
     - application.yml                 … アプリケーション設定ファイル
 ```
 
-## 開発環境
-| 項目 | バージョン | 用途 |
-|:-----------:|:-----------:|:-----------:|
-| Kotlin | 1.3 | 言語 |
-| AdoptOpenJDK | 11 | JDK |
-| Gradle | 6.3 | ビルド |
-| Sprint Boot | 2.2.6 | フレームワーク |
+## セットアップ
+
+[[ローカル環境構築]](https://github.com/taroshun32/todoapp-api-kotlin-springboot/wiki/ローカル環境構築)を参照
+
+## 起動方法
+
+```shell
+# 起動
+$ ./docker-compose up
+
+# 停止
+$ ./docker-compose down
+```
+
+http://localhost:8080/ にアクセス
