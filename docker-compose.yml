@@ -12,7 +12,6 @@ services:
     volumes:
       - ".:/var/app:cached"
       - "~/.gradle:/root/.gradle"
-      - "$HOME/.aws/credentials:/root/.aws/credentials:ro"
     depends_on:
       - mysql
     environment:
