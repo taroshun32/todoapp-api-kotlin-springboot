@@ -82,8 +82,8 @@ class AuthenticationController(
     @RequestHeader(value = "Authorization", required = true) authorization: String,
     @RequestHeader(value = "X-OS-TYPE", required = true) xminusOSMinusTYPE: String,
     @RequestHeader(value = "X-APP-VERSION", required = true) xminusAPPMinusVERSION: String
-  ) {
+  ): HttpStatus {
     val header = TodoAppHeaders.of(xminusOSMinusTYPE, xminusAPPMinusVERSION, authorization)
-    service.logout(header)
+    return service.logout(header)
   }
 }
