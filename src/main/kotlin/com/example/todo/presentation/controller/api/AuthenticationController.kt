@@ -3,6 +3,7 @@ package com.example.todo.presentation.controller.api
 import com.example.todo.application.service.AuthenticationService
 import com.example.todo.domain.model.api.header.TodoAppHeaders
 import com.example.todo.domain.model.api.header.TodoAppNoAuthHeaders
+import org.openapitools.spring.apis.AuthenticationApiBaseController
 import org.openapitools.spring.models.AuthPostParameter
 import org.openapitools.spring.models.Token
 import org.openapitools.spring.models.TokenRefreshPostParameter
@@ -20,7 +21,7 @@ import javax.validation.Valid
 @Validated
 class AuthenticationController(
   private val service: AuthenticationService
-) {
+) : AuthenticationApiBaseController() {
 
   @RequestMapping(
     value = ["/api/signup"],
@@ -29,12 +30,12 @@ class AuthenticationController(
     method = [RequestMethod.POST]
   )
   @ResponseStatus(HttpStatus.OK)
-  fun signup(
-    @RequestHeader(value = "X-OS-TYPE", required = true) xOsType: String,
-    @RequestHeader(value = "X-APP-VERSION", required = true) xAppVersion: String,
+  override fun apiV1SignupPost(
+    @RequestHeader(value = "X-OS-TYPE", required = true) xminusOSMinusTYPE: String,
+    @RequestHeader(value = "X-APP-VERSION", required = true) xminusAPPMinusVERSION: String,
     @Valid @RequestBody authPostParameter: AuthPostParameter
   ): Token {
-    val header = TodoAppNoAuthHeaders.of(xOsType, xAppVersion)
+    val header = TodoAppNoAuthHeaders.of(xminusOSMinusTYPE, xminusAPPMinusVERSION)
     return service.signup(header, authPostParameter)
   }
 
@@ -45,12 +46,12 @@ class AuthenticationController(
     method = [RequestMethod.POST]
   )
   @ResponseStatus(HttpStatus.OK)
-  fun login(
-    @RequestHeader(value = "X-OS-TYPE", required = true) xOsType: String,
-    @RequestHeader(value = "X-APP-VERSION", required = true) xAppVersion: String,
+  override fun apiV1LoginPost(
+    @RequestHeader(value = "X-OS-TYPE", required = true) xminusOSMinusTYPE: String,
+    @RequestHeader(value = "X-APP-VERSION", required = true) xminusAPPMinusVERSION: String,
     @Valid @RequestBody authPostParameter: AuthPostParameter
   ): Token {
-    val header = TodoAppNoAuthHeaders.of(xOsType, xAppVersion)
+    TodoAppNoAuthHeaders.of(xminusOSMinusTYPE, xminusAPPMinusVERSION)
     return service.login(authPostParameter)
   }
 
@@ -61,12 +62,12 @@ class AuthenticationController(
     method = [RequestMethod.POST]
   )
   @ResponseStatus(HttpStatus.OK)
-  fun tokenRefresh(
-    @RequestHeader(value = "X-OS-TYPE", required = true) xOsType: String,
-    @RequestHeader(value = "X-APP-VERSION", required = true) xAppVersion: String,
+  override fun apiV1TokenRefreshPost(
+    @RequestHeader(value = "X-OS-TYPE", required = true) xminusOSMinusTYPE: String,
+    @RequestHeader(value = "X-APP-VERSION", required = true) xminusAPPMinusVERSION: String,
     @Valid @RequestBody tokenRefreshPostParameter: TokenRefreshPostParameter
   ): Token {
-    TodoAppNoAuthHeaders.of(xOsType, xAppVersion)
+    TodoAppNoAuthHeaders.of(xminusOSMinusTYPE, xminusAPPMinusVERSION)
     return service.refresh(tokenRefreshPostParameter)
   }
 
@@ -77,12 +78,12 @@ class AuthenticationController(
     method = [RequestMethod.POST]
   )
   @ResponseStatus(HttpStatus.OK)
-  fun logout(
+  override fun apiV1LogoutPost(
     @RequestHeader(value = "Authorization", required = true) authorization: String,
-    @RequestHeader(value = "X-OS-TYPE", required = true) xOsType: String,
-    @RequestHeader(value = "X-APP-VERSION", required = true) xAppVersion: String
-  ): HttpStatus {
-    val header = TodoAppHeaders.of(xOsType, xAppVersion, authorization)
-    return service.logout(header)
+    @RequestHeader(value = "X-OS-TYPE", required = true) xminusOSMinusTYPE: String,
+    @RequestHeader(value = "X-APP-VERSION", required = true) xminusAPPMinusVERSION: String
+  ) {
+    val header = TodoAppHeaders.of(xminusOSMinusTYPE, xminusAPPMinusVERSION, authorization)
+    service.logout(header)
   }
 }
