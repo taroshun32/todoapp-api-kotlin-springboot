@@ -17,6 +17,9 @@ API定義には `OpenAPI(Swagger)` を用いています。
 | Doma | 2.19.3 | ORマッパー |
 | Flyway | 5.2.3 | マイグレーション |
 
+## 機能全体図
+![](./document/Feature.png)
+
 ## プロジェクト構成
 <pre>
 root
