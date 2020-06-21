@@ -36,9 +36,9 @@ root
   ├ Dangerfile : Dangerのタスク定義
   ├ Dockerfile : Dockerイメージの定義
   ├ docker-compose.yml : ローカル開発用の複数Dockerコンテナ管理
-  ├ build.gradle :Gradleプロジェクト定義
+  ├ build.gradle : Gradleプロジェクト定義
   ├ datasource.gradle: データソース設定
-  ├ settings.gradle :Gradleプロジェクト設定
+  ├ settings.gradle : Gradleプロジェクト設定
   └ README.md
 </pre>
 
