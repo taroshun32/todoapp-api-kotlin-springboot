@@ -7,12 +7,10 @@ buildscript {
     mysqlJdbcVersion = "8.0.14"
     flywayVersion = "5.2.3"
     detektVersion = "1.3.0"
-    reactorTestVersion = "3.3.0.RELEASE"
     assertJVersion = "3.12.2"
     dbunitVersion = "2.6.0"
     dbunitSpringVersion = "1.3.0"
     mockkVersion = "1.9"
-    moshiVersion = "1.8.0"
   }
   repositories {
     mavenCentral()
@@ -74,6 +72,15 @@ compileTestKotlin {
 dependencies {
   implementation project(":todoapp-openapi")
 
+  /* kotlin */
+  implementation("org.jetbrains.kotlin:kotlin-reflect")
+  implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core")
+  implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
+
+  /* spring */
+  runtimeOnly("org.springframework.boot:spring-boot-devtools")
+  implementation("org.springframework.boot:spring-boot-starter-aop")
+
   /* Detekt - Static Code Analysis */
   detektPlugins("io.gitlab.arturbosch.detekt:detekt-formatting:${detektVersion}")
 
@@ -98,7 +105,6 @@ dependencies {
   testImplementation("org.springframework.boot:spring-boot-starter-test") {
     exclude group: "org.junit.vintage", module: "junit-vintage-engine"
   }
-  testImplementation("io.projectreactor:reactor-test:${reactorTestVersion}")
   testImplementation("org.assertj:assertj-core:${assertJVersion}")
   testImplementation("org.dbunit:dbunit:${dbunitVersion}")
   testCompile("com.github.springtestdbunit:spring-test-dbunit:${dbunitSpringVersion}")
@@ -111,7 +117,6 @@ dependencies {
 allprojects {
   apply plugin: "kotlin"
   apply plugin: "kotlin-spring"
-  apply plugin: "org.springframework.boot"
   apply plugin: "io.spring.dependency-management"
   apply plugin: "kotlin-kapt"
 
@@ -120,24 +125,20 @@ allprojects {
     jcenter()
   }
 
+  dependencyManagement {
+    imports {
+      mavenBom "org.springframework.boot:spring-boot-dependencies:${springBootVersion}"
+    }
+  }
+
   dependencies {
     /* kotlin */
-    implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core")
-    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-reactor")
 
     /* spring */
     implementation("org.springframework.boot:spring-boot-starter-web")
-    runtimeOnly("org.springframework.boot:spring-boot-devtools")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-    implementation("org.springframework.boot:spring-boot-starter-aop")
   }
-}
-
-project(":todoapp-openapi") {
-  bootJar.enabled = false
-  jar.enabled = true
 }
 
 /* Detekt Task */
