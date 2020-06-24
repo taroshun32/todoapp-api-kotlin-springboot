@@ -1,7 +1,6 @@
 package com.example.todo.domain.service
 
 import com.example.todo.application.repository.TokenRepository
-import com.example.todo.domain.model.api.header.TodoAppHeaders
 import com.example.todo.domain.model.api.token.AccessToken
 import com.example.todo.domain.model.api.token.RefreshToken
 import com.example.todo.domain.model.api.token.Token
