@@ -4,7 +4,7 @@ kotlin×springboot タスク管理アプリ用API
 ## プロジェクトについて
 このプロジェクトでは `GithubActions` を `CI` のメインツールとして使用しています。[ [各Actionについて](https://github.com/taroshun32/todoapp-api-kotlin-springboot/wiki/GithubActions) ]  
 API定義には `OpenAPI(Swagger)` を用いています。  
-`Controller` と `Model` を `openapi-generator` を用いて自動生成したものをサブモジュールとして取り込み、Gradleでサブプロジェクト化しています。
+`openapi-generator` を用いて自動生成した `Controller` と `Model` をサブモジュールとして取り込み、Gradleでサブプロジェクト化しています。
 
 ## 開発環境
 | 項目 | バージョン | 用途 |
